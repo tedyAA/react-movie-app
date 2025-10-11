@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
   const location = useLocation();
 
   const navLinks = [
-    { to: "/home", label: "Home" },
+    { to: "/", label: "Home" },
     { to: "/movies", label: "Movies" },
     { to: "/tvshows", label: "TV Shows" },
   ];
