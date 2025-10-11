@@ -201,4 +201,4 @@ const MovieOverlay = ({
 };
 
 export default MovieOverlay;
-  
+
