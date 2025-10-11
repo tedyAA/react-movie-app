@@ -2,7 +2,6 @@ import React from "react";
 import github from "../assets/github.png";
 import linkedinLogo from "../assets/linkedin.png";
 import logo from "../assets/logo.png";
-import tsxLogo from "../assets/ytChannelLogo.png";
 
 const Footer: React.FC = () => {
   return (
