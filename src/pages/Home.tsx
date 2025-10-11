@@ -16,7 +16,7 @@ const Home: React.FC = ({handleMovieClick} : {handleMovieClick: (movieId:number)
     ];
 
     return <div>
-        <div className=" ">
+        <div className="bg-gray-900 ">
             <DisplayItems displayTags={chooseWhatToDisplay} handleMovieClick={handleMovieClick} />
         </div>
     </div>;

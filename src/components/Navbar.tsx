@@ -12,8 +12,9 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [movieData, setMovieData] = useState({
     backdropPath: "",
     title: "",
@@ -27,10 +28,6 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
     { to: "/movies", label: "Movies" },
     { to: "/tvshows", label: "TV Shows" },
   ];
-
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 150);
-  };
 
   const fetchMediaData = async (type: "movie" | "tv") => {
     const url = type === "tv" ? popularShows : popular;
@@ -57,7 +54,19 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
     onSearch?.(query);
   };
 
-  // Fetch background media on route change
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      setIsNavbarVisible(false); // Hide on scroll down
+    } else {
+      setIsNavbarVisible(true); // Show on scroll up
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  // Fetch media data when route changes
   useEffect(() => {
     const path = location.pathname;
     if (path.includes("tvshows")) fetchMediaData("tv");
@@ -70,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
       <div
@@ -81,25 +90,27 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
       >
         {/* Navbar */}
         <header
-            className={`fixed left-0 top-0 w-full z-50 px-1 py-1 transition-colors duration-500 bg-gradient-to-b from-black to-transparent h-64 w-full`}
+            className={`fixed left-0 top-0 w-full z-50 px-1 py-1 bg-gradient-to-b from-black to-transparent h-64 transition-transform duration-300 ${
+                isNavbarVisible ? "translate-y-0" : "-translate-y-full"
+            }`}
         >
           <div className="flex justify-between items-center h-[65px]">
             {/* Logo */}
             <img
                 src={logo}
-                alt="user"
+                alt="Logo"
                 className="w-10 h-10 ml-5 rounded-full cursor-pointer hover:scale-110 hover:rotate-90 transition-transform duration-300"
             />
 
             {/* Nav Links */}
-            <nav className="hidden md:flex space-x-10 font-bold text-gray-300 navbarText text-xl ">
-              {navLinks.map(({to, label}) => (
+            <nav className="hidden md:flex space-x-10 font-bold text-gray-300 navbarText text-xl">
+              {navLinks.map(({ to, label }) => (
                   <NavLink
                       key={to}
                       to={to}
-                      className={({isActive}) =>
+                      className={({ isActive }) =>
                           `hover:text-white transition-transform duration-200 ${
-                              isActive ? "border-b-2 border-current  pb-0.3 " : ""
+                              isActive ? "border-b-2 border-current pb-0.3" : ""
                           }`
                       }
                   >
@@ -120,12 +131,12 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
               <span className="material-icons p-1">search</span>
               <img
                   src={user}
-                  alt="user"
+                  alt="User"
                   className="w-10 h-10 rounded-full cursor-pointer hover:scale-110 hover:rotate-90 transition-transform duration-300"
               />
             </div>
 
-            {/* Hamburger */}
+            {/* Hamburger Menu */}
             <button
                 className="block md:hidden text-white text-3xl"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -172,20 +183,17 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, isSearching }) => {
 
         {/* Backdrop Content */}
         {!isSearching && (
-            <div
-                className="absolute inset-0 h-full bg-gradient-to-t from-black to-transparent flex flex-col justify-center px-8">
+            <div className="absolute inset-0 h-full bg-gradient-to-t from-black to-transparent flex flex-col justify-center px-8">
               <h1 className="text-5xl font-bold mb-4 movieTitle tracking-wider">
                 {movieData.title}
               </h1>
               <p className="overviewText text-xl max-w-prose">{movieData.overview}</p>
 
-              <button
-                  className="mt-4 w-fit px-4 py-2 bg-[#9d9a96ac] font-bold rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+              <button className="mt-4 w-fit px-4 py-2 bg-[#9d9a96ac] font-bold rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
                 More Info
                 <span className="material-icons">info</span>
               </button>
             </div>
-
         )}
       </div>
   );

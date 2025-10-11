@@ -12,7 +12,7 @@ const Movies = ({ handleMovieClick }: { handleMovieClick: (movieId: number) => v
         createDisplayItems(top_rated_movies, "Top Rated Movies"),
     ];
     return (
-        <div>
+        <div className={"bg-gray-900"}>
             <DisplayItems displayTags={displayCategories} handleMovieClick={handleMovieClick}/>
         </div>
     );

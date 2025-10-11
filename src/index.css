@@ -1,1 +1,67 @@
 @import "tailwindcss";
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @apply bg-neutral-900 text-white;
+}
+
+.truncate-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px; /* Adjust width as needed */
+    font-family: "Thasadith", serif;
+}
+
+.movieTitle {
+    font-family: "Bebas Neue", serif;
+}
+
+.navbarText {
+    font-family: "Thasadith", serif;
+}
+.overviewText {
+    font-family: "Nunito", serif;
+    font-weight: 100;
+}
+
+.animatetext {
+    animation: textAnimate 2s ease-in-out;
+}
+
+@keyframes textAnimate {
+    0% {
+        transform: scale(0.2);
+    }
+
+    100% {
+        transform: scale(1);;
+    }
+}
+
+.logoAnimation{
+    animation: logoAnimate 6s ease-in-out
+}
+
+@keyframes logoAnimate {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left:4rem;
+    }
+    100% {
+        left:0
+    }
+}
+
+
+
+
+
+

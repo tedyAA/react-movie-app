@@ -18,7 +18,7 @@ const TvShows = ({ handleTvClick }: { handleTvClick: (tvId: number) => void }) =
     ];
 
     return (
-        <div>
+        <div className={"bg-gray-900"}>
             <DisplayItems displayTags={displayCategories} handleMovieClick={handleTvClick}/>
         </div>
     );
