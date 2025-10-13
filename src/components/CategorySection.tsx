@@ -1,4 +1,3 @@
-// CategorySection.tsx
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import noImage from "../assets/noImage.jpg";
@@ -86,7 +85,7 @@ const CategorySection: React.FC<CategorySecProps> = ({
                             <div className="absolute bottom-0 left-0 w-full px-3 py-2 rounded-b-lg bg-gradient-to-t from-black/80 to-transparent flex justify-center">
                                 <p
                                     className="text-md text-white truncate max-w-full whitespace-nowrap"
-                                    title={bottomText}
+                                    title={String(bottomText)}
                                 >
                                     {bottomText}
                                 </p>

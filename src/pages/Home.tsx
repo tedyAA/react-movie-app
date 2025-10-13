@@ -1,11 +1,14 @@
 import React from "react";
-import type {ItemsCategory} from "../modules/types_file.ts";
-import {createDisplayItems} from "../modules/types_file.ts";
-import {airing_today, now_playing, popular, popularShows, trendingShows, upcoming} from "../modules/ApiLiks.ts";
+import type { ItemsCategory } from "../modules/types_file.ts";
+import { createDisplayItems } from "../modules/types_file.ts";
+import { airing_today, now_playing, popular, popularShows, trendingShows, upcoming } from "../modules/ApiLiks.ts";
 import DisplayItems from "../components/DisplayItems.tsx";
 
-const Home: React.FC = ({handleMovieClick} : {handleMovieClick: (movieId:number) => void}) => {
+interface HomeProps {
+    handleMovieClick: (movieId: number) => void;
+}
 
+const Home: React.FC<HomeProps> = ({ handleMovieClick }) => {
     const chooseWhatToDisplay: ItemsCategory[] = [
         createDisplayItems(now_playing, "Now Playing"),
         createDisplayItems(popular, "Popular Movies"),
@@ -15,11 +18,13 @@ const Home: React.FC = ({handleMovieClick} : {handleMovieClick: (movieId:number)
         createDisplayItems(airing_today, "On Air Today"),
     ];
 
-    return <div>
-        <div className="bg-gray-900 ">
-            <DisplayItems displayTags={chooseWhatToDisplay} handleMovieClick={handleMovieClick} />
+    return (
+        <div>
+            <div className="bg-gray-900">
+                <DisplayItems displayTags={chooseWhatToDisplay} handleMovieClick={handleMovieClick} />
+            </div>
         </div>
-    </div>;
+    );
 };
 
 export default Home;

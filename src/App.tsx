@@ -23,7 +23,6 @@ const App = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const location = useLocation(); //* To track the current route
 
-    // Handle modal movie click
     const handleMovieClick = (movieId: number) => {
         setSelectedId(movieId);
         setIsModalOpen(true);
@@ -34,25 +33,25 @@ const App = () => {
     };
 
     useEffect(() => {
-        setBuffering(true); // Show loading overlay
+        setBuffering(true);
         const timeout = setTimeout(() => {
-            setBuffering(false); // Hide loading overlay after 1 second
+            setBuffering(false);
         }, 1000);
-        window.scrollTo(0, 0); // Scroll to top
+        window.scrollTo(0, 0);
         return () => {
-            clearTimeout(timeout); // Cleanup timeout on component unmount
-            setSearchQuery(""); //clear search input when page changes
+            clearTimeout(timeout);
+            setSearchQuery("");
         };
-    }, [location.pathname, location]); //
+    }, [location.pathname, location]);
 
     useEffect(() => {
         const fetchSearchResults = async () => {
             if (!searchQuery) {
-                setIsSearching(false); // Reset state if search query is empty
+                setIsSearching(false);
                 return;
             }
 
-            setIsSearching(true); // Indicate searching
+            setIsSearching(true);
             try {
                 const searchUrl = `${baseUrl}/search/multi?query=${searchQuery}&api_key=${apiKey}`;
                 const response = await axios.get(searchUrl);
@@ -65,7 +64,7 @@ const App = () => {
             }
         };
 
-        fetchSearchResults(); // Trigger search whenever searchQuery changes
+        fetchSearchResults();
     }, [searchQuery]);
 
     return (
