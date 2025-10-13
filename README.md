@@ -1,11 +1,44 @@
-# React + TypeScript + Vite
+# 🎬 Movie Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **movie and TV show discovery app** built with **React + TypeScript + Vite** and powered by **Redux Toolkit**.  
+Discover trending movies, upcoming releases, and popular shows — all in a sleek, responsive interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ View
+
+<img width="1919" height="984" alt="image" src="https://github.com/user-attachments/assets/e993d69a-2a68-4e09-ba23-39dc3e53b23a" />
+
+
+## 🚀 Tech Stack
+
+| Category | Technologies |
+|-----------|---------------|
+| **Frontend** | React 18, TypeScript, Vite |
+| **State Management** | Redux Toolkit, React-Redux |
+| **Styling** | Tailwind CSS |
+| **Data Source** | TMDB API (The Movie Database) |
+| **Build Tools** | Vite + SWC |
+| **Linting / Formatting** | ESLint, Prettier |
+
+---
+
+## ✨ Features
+
+- 🎥 Browse **Now Playing**, **Popular**, **Trending**, and **Upcoming** movies  
+- 📺 Explore **Popular** and **Trending TV Shows**  
+- 🔍 Search movies or TV shows by name  
+- 💡 See release years, ratings, and genres  
+- 🧩 Fully responsive design (mobile → desktop)  
+- ⚡️ Super-fast HMR with Vite  
+- 🧠 Global state management with Redux Toolkit  
+- 💅 Beautiful UI with TailwindCSS animations and gradients  
+
+---
+
+## 📂 Project Structure
+
+
 
 ## React Compiler
 
