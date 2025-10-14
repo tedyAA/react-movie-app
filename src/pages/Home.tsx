@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ handleMovieClick }) => {
     return (
         <div>
             <div className="bg-gray-900">
-                <div className="flex flex-wrap justify-evenly space-x-0 mt-1 mx-4 items-start">
+                <div className="flex flex-wrap justify-evenly space-x-0 mt-1 mx-4 items-start hidden sm:block">
                     <BrandCard
                         imageSrc="/src/assets/brands/disney.webp"
                         src="/src/assets/brands/disney-video.mp4"/>
