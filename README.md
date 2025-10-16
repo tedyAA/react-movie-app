@@ -50,7 +50,7 @@ npm install
 
 ### 2. Create a .env file
 
-Inside the src folder, create a .env file with the following content:
+Inside the project folder, create a .env file with the following content:
 
 ```bash
 VITE_API_KEY=your_api_key_here
